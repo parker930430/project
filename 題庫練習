@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>題庫練習</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8F9FA;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .progress-bar-container {
+            width: 80%;
+            max-width: 600px;
+            height: 10px;
+            background-color: #E0E0E0;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50 0%, #2E7D32 100%);
+            transition: width 0.5s ease-in-out;
+            border-radius: 5px;
+        }
+        .question-card {
+            background-color: #FFFFFF;
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .answer-button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            background-color: #F5F5DC;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .answer-button:hover {
+            background-color: #EDECEB;
+        }
+        .answer-button.correct {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            color: #FFFFFF;
+        }
+        .answer-button.wrong {
+            background-color: #F44336;
+            border-color: #F44336;
+            color: #FFFFFF;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 600px;
+        }
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .skip-btn {
+            background-color: #A0A0A0;
+            color: #FFFFFF;
+        }
+        .next-btn {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="question-card">
+        <p class="question-text" id="questionText">問題 1: 請問 HTML 的全名是什麼？</p>
+        <div id="answerButtons">
+            <button class="answer-button" data-correct="false">Hyper Tool Markup Language</button>
+            <button class="answer-button" data-correct="true">Hyper Text Markup Language</button>
+            <button class="answer-button" data-correct="false">High Tech Markup Language</button>
+        </div>
+    </div>
+    <div class="navigation-buttons">
+        <button class="nav-btn skip-btn">跳過</button>
+        <button class="nav-btn next-btn" style="display: none;">下一題</button>
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const answerButtons = document.getElementById('answerButtons');
+        const nextButton = document.querySelector('.next-btn');
+        const skipButton = document.querySelector('.skip-btn');
+        let answered = false;
+
+        answerButtons.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' && !answered) {
+                const isCorrect = e.target.dataset.correct === 'true';
+                if (isCorrect) {
+                    e.target.classList.add('correct');
+                } else {
+                    e.target.classList.add('wrong');
+                    const correctBtn = answerButtons.querySelector('[data-correct="true"]');
+                    if (correctBtn) {
+                        correctBtn.classList.add('correct');
+                    }
+                }
+                answered = true;
+                nextButton.style.display = 'block';
+                // 這裡可以加入更新進度條的邏輯
+            }
+        });
+
+        // 這裡可以加入載入下一題和跳過題目的邏輯
+    </script>
+</body>
+</html>
