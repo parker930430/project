@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>錯題本</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8F9FA;
+            padding: 20px;
+            display: flex;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 350px;
+            padding: 20px;
+            border-right: 1px solid #E0E0E0;
+            background-color: #F5F5F5;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            font-size: 1.5em;
+            color: #2E7D32;
+            margin-bottom: 20px;
+        }
+        .question-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .question-item:hover {
+            background-color: #EFEFEF;
+        }
+        .question-item.active {
+            border-color: #4CAF50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .question-item.wrong {
+            border-left: 5px solid #F44336;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: #FFFFFF;
+        }
+        .main-content h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .answer-details {
+            padding: 20px;
+            background-color: #F8F9FA;
+            border-radius: 8px;
+        }
+        .answer-details p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>錯題本</h2>
+            <div class="question-list">
+                <div class="question-item wrong">
+                    <p>第 1 章：HTML 標籤</p>
+                </div>
+                <div class="question-item">
+                    <p>第 2 章：CSS 選擇器</p>
+                </div>
+                <div class="question-item wrong active">
+                    <p>第 3 章：JavaScript 變數</p>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <h3>JavaScript 變數</h3>
+            <div class="question-details">
+                <p><strong>題目：</strong>以下何者不是合法的 JavaScript 變數命名？</p>
+                <div class="answer-details">
+                    <p><strong>你的答案：</strong>A. `_myVar`</p>
+                    <p><strong>正確答案：</strong>B. `2ndVar`</p>
+                    <p><strong>解析：</strong>變數名稱不能以數字開頭。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
