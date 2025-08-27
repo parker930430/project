@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習分析</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F8F9FA;
+            padding: 40px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2E7D32;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chart-container {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin-bottom: 40px;
+        }
+        .chart-card {
+            background-color: #FFFFFF;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .chart-card h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .chart {
+            height: 200px;
+            background-color: #EFEFEF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        .suggestion-card {
+            background-color: #F5F5DC;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #2E7D32;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>學習足跡 🌍</h1>
+    </div>
+    <div class="chart-container">
+        <div class="chart-card">
+            <h3>正確率折線圖</h3>
+            <div class="chart">（圖表佔位符）</div>
+        </div>
+        <div class="chart-card">
+            <h3>各章節長條圖</h3>
+            <div class="chart">（圖表佔位符）</div>
+        </div>
+        <div class="chart-card">
+            <h3>錯題類型圓餅圖</h3>
+            <div class="chart">（圖表佔位符）</div>
+        </div>
+    </div>
+    <div class="suggestion-card">
+        <p>系統提示：你最需要補強的是第 3 章 🌱</p>
+    </div>
+</body>
+</html>
