@@ -3,111 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 助教</title>
+    <title>登入 - 永續學習</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #F8F9FA;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .chat-container {
-            width: 90%;
-            max-width: 600px;
-            background-color: #FFFFFF;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            background: linear-gradient(180deg, rgba(76, 175, 80, 0.1) 0%, #FFFFFF 100%);
             display: flex;
             flex-direction: column;
-            height: 80vh;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
         }
-        .chat-header {
-            background-color: #4CAF50;
-            color: #FFFFFF;
-            padding: 15px;
+        .login-container {
             text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .chat-header span {
-            margin-right: 10px;
-        }
-        .chat-messages {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-        .message {
-            margin-bottom: 15px;
-            display: flex;
-        }
-        .message.ai {
-            justify-content: flex-start;
-        }
-        .message.user {
-            justify-content: flex-end;
-        }
-        .message .bubble {
-            max-width: 70%;
-            padding: 12px 18px;
+            padding: 40px;
+            background-color: #FFFFFF;
             border-radius: 20px;
-            line-height: 1.4;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            max-width: 400px;
         }
-        .message.ai .bubble {
-            background-color: #E8F5E9;
-            color: #333;
-            border-bottom-left-radius: 5px;
+        .logo {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-bottom: 20px;
         }
-        .message.user .bubble {
-            background-color: #B0E0E6;
-            color: #333;
-            border-bottom-right-radius: 5px;
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #2E7D32;
         }
-        .chat-input {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid #E0E0E0;
+        .input-group {
+            margin-bottom: 20px;
         }
-        .chat-input input {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border-radius: 20px;
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
             border: 1px solid #E0E0E0;
-            margin-right: 10px;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
         }
-        .chat-input button {
-            background-color: #4CAF50;
+        .input-group input::placeholder {
+            color: #A0A0A0;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 15px;
             border: none;
+            border-radius: 8px;
+            background-color: #4CAF50;
             color: #FFFFFF;
-            padding: 10px 15px;
-            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-btn:hover {
+            background-color: #2E7D32;
+        }
+        .slogan {
+            margin-top: 40px;
+            color: #888;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <span>AI 永續助教 🌱</span>
+    <div class="login-container">
+        <div class="logo">📖🌱</div>
+        <h1>永續學習平台</h1>
+        <div class="input-group">
+            <input type="text" placeholder="使用者名稱">
         </div>
-        <div class="chat-messages">
-            <div class="message ai">
-                <div class="bubble">您好！很高興能為您解答永續相關的學習問題。</div>
-            </div>
-            <div class="message user">
-                <div class="bubble">請問什麼是碳足跡？</div>
-            </div>
+        <div class="input-group">
+            <input type="password" placeholder="密碼">
         </div>
-        <div class="chat-input">
-            <input type="text" placeholder="輸入你的問題...">
-            <button>發送</button>
-        </div>
+        <button class="login-btn">登入</button>
     </div>
+    <p class="slogan">永續學習，從今天開始 🌱</p>
 </body>
 </html>
