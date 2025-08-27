@@ -6,7 +6,6 @@
     <title>AI 助教</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
-        
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background-color: #F8F9FA;
