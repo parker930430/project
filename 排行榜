@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排行榜</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #F0FDF4;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .ranking-card {
+            background-color: #FFFFFF;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+        .ranking-card h2 {
+            text-align: center;
+            color: #2E7D32;
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        .rank-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #F8F9FA;
+            font-size: 1.1em;
+            transition: transform 0.2s ease-in-out;
+        }
+        .rank-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .rank-number {
+            font-weight: bold;
+            width: 40px;
+            text-align: center;
+            margin-right: 20px;
+            color: #4CAF50;
+        }
+        .rank-item.first .rank-number { color: gold; font-size: 1.5em; }
+        .rank-item.second .rank-number { color: silver; font-size: 1.4em; }
+        .rank-item.third .rank-number { color: #CD7F32; font-size: 1.3em; }
+        .rank-item.self {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        .rank-item.self .rank-number {
+            color: #FFFFFF;
+        }
+        .rank-name {
+            flex-grow: 1;
+        }
+        .rank-score {
+            font-weight: bold;
+            color: #2E7D32;
+        }
+        .rank-item.self .rank-score {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="ranking-card">
+        <h2>排行榜 🏆</h2>
+        <div class="rank-list">
+            <div class="rank-item first">
+                <span class="rank-number">🥇</span>
+                <span class="rank-name">綠色使者</span>
+                <span class="rank-score">1500 分</span>
+            </div>
+            <div class="rank-item second">
+                <span class="rank-number">🥈</span>
+                <span class="rank-name">永續之星</span>
+                <span class="rank-score">1450 分</span>
+            </div>
+            <div class="rank-item third">
+                <span class="rank-number">🥉</span>
+                <span class="rank-name">環保先鋒</span>
+                <span class="rank-score">1380 分</span>
+            </div>
+            <div class="rank-item">
+                <span class="rank-number">4</span>
+                <span class="rank-name">自然守護者</span>
+                <span class="rank-score">1290 分</span>
+            </div>
+            <div class="rank-item self">
+                <span class="rank-number">5</span>
+                <span class="rank-name">我</span>
+                <span class="rank-score">1250 分</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
