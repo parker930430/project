@@ -1,0 +1,114 @@
+import json
+import random
+import os
+
+class QuestionBank:
+    def __init__(self, json_dir="."):
+        self.json_dir = json_dir
+        self.question_data = {}
+        self.load_all_chapters()
+
+    def load_all_chapters(self):
+        """
+        載入指定目錄下所有 .json 檔案的題庫。
+        假設 JSON 檔案名稱格式為 chapterX.json (e.g., chapter1.json, chapter2.json)
+        """
+        print(f"正在嘗試載入目錄: '{os.path.abspath(self.json_dir)}' 下的題庫...") # 輸出目前的搜尋路徑
+        found_any_chapters = False
+        for filename in os.listdir(self.json_dir):
+            # 確保只讀取副檔名是 .json 的檔案
+            if filename.endswith(".json") and not filename.endswith(".json.json"): # 排除檔名多餘的 .json
+                filepath = os.path.join(self.json_dir, filename)
+                chapter_name = filename.replace(".json", "") # e.g., "chapter1"
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        if isinstance(data, list):
+                            self.question_data[chapter_name] = data
+                            print(f"成功載入題庫: {filename}")
+                            found_any_chapters = True
+                        else:
+                            print(f"警告: {filename} 的內容不是一個有效的題目列表。")
+                except FileNotFoundError:
+                    print(f"錯誤: 找不到檔案 {filepath}")
+                except json.JSONDecodeError:
+                    print(f"錯誤: 無法解析 JSON 檔案 {filepath}。請檢查 JSON 格式。")
+                except Exception as e:
+                    print(f"載入 {filepath} 時發生未知錯誤: {e}")
+        
+        if not found_any_chapters:
+            print(f"警告: 在目錄 '{os.path.abspath(self.json_dir)}' 中沒有找到任何有效的 'chapterX.json' 檔案。")
+
+    def get_chapter_list(self):
+        """回傳所有可用的章節名稱 (來自載入的 JSON 檔名)"""
+        return list(self.question_data.keys())
+
+    def select_chapter(self, chapter_name):
+        """
+        根據章節名稱獲取對應的題目列表。
+        """
+        if chapter_name in self.question_data:
+            print(f"已選擇章節: {chapter_name}")
+            return self.question_data[chapter_name]
+        else:
+            print(f"錯誤: 章節 '{chapter_name}' 不存在。")
+            return None
+
+    def draw_random_questions(self, chapter_questions, num_questions=40):
+        """
+        從指定的題目列表中隨機抽取不重複的題目。
+        """
+        if not chapter_questions:
+            print("錯誤: 沒有題目可供抽取。")
+            return []
+
+        if len(chapter_questions) < num_questions:
+            print(f"警告: 章節題目數量 ({len(chapter_questions)}) 少於要求的抽題數量 ({num_questions})。將抽取所有題目。")
+            num_questions = len(chapter_questions)
+
+        drawn_questions = random.sample(chapter_questions, num_questions)
+        return drawn_questions
+
+    def display_extracted_questions(self, questions):
+        """
+        在終端機中顯示抽取的題目資訊。
+        """
+        if not questions:
+            print("沒有題目顯示。")
+            return
+
+        print("\n--- 開始練習 ---")
+        for i, q in enumerate(questions):
+            # 假設你的 JSON 欄位是: "題號", "題目", "選項1", "選項2", "選項3", "選項4", "答案", "詳解"
+            print(f"\n{i+1}. 題目 ({q.get('題號', 'N/A')}): {q.get('題目', '無題目內容')}")
+            print(f"   1. {q.get('選項1', 'N/A')}")
+            print(f"   2. {q.get('選項2', 'N/A')}")
+            print(f"   3. {q.get('選項3', 'N/A')}")
+            print(f"   4. {q.get('選項4', 'N/A')}")
+        print("\n--- 題目顯示完畢 ---")
+
+# --- 主程式執行區 ---
+if __name__ == "__main__":
+    question_bank = QuestionBank(json_dir=".") 
+
+    available_chapters = question_bank.get_chapter_list()
+    
+    if not available_chapters:
+        # 如果這裡還是印出這個訊息，請檢查 ZONA 資料夾下的 JSON 檔名是否正確 (只有 .json 副檔名)，以及 JSON 內容格式是否為一個列表。
+        print("錯誤: 未載入任何題庫。請確認 JSON 檔案（如 chapter1.json）存在於與 question_app.py 同一個目錄中，且名稱正確，格式也正確。")
+    else:
+        print(f"可用章節: {', '.join(available_chapters)}")
+
+        while True:
+            chosen_chapter_key_input = input(f"請輸入您想練習的章節名稱 (例如: chapter1)，或輸入 'quit' 離開: ").strip()
+
+            if chosen_chapter_key_input.lower() == 'quit':
+                break
+
+            if chosen_chapter_key_input in available_chapters:
+                selected_questions_data = question_bank.select_chapter(chosen_chapter_key_input)
+                if selected_questions_data:
+                    drawn_questions = question_bank.draw_random_questions(selected_questions_data, num_questions=40)
+                    question_bank.display_extracted_questions(drawn_questions)
+            else:
+                print(f"輸入的章節名稱 '{chosen_chapter_key_input}' 無效，可用章節有: {', '.join(available_chapters)}。請重新輸入。")
